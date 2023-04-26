@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import { Container } from 'components/App/App.styled';
+
 import SectionStyled from './Section.styled';
 import { Node } from 'typescript';
+import { Container } from 'modules/App/App.styled';
 
 interface SectionProps {
   title: string;
