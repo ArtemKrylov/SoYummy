@@ -13,7 +13,8 @@ const App: FC = () => {
     });
   }, [userSignUp]);
 
-  // {name:'dfd', email: 'sf', password: 'dfd'}
+  console.log({ isLoading, isError, data });
+
   return (
     <div className="app">
       <GlobalStyle />
