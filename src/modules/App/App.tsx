@@ -1,39 +1,28 @@
-import { useRefreshMutation } from 'API/SoYummy_API';
+import {} from 'redux/API/SoYummyApiSlice';
 import React, { FC, useEffect } from 'react';
 import { GlobalStyle } from 'shared/GlobalStyle';
+import {
+  useGetCurrentUserQuery,
+  useLoginMutation,
+} from 'redux/auth/authApiSlice';
 
 const App: FC = () => {
-  // const [userLogIn, { isLoading: isLoginLoading, isLogin:isLoginError, data: loginData }] = useLoginMutation();
-
-  const [
-    userRefresh,
-    {
-      isLoading: isRefreshLoading,
-      isError: isRefreshError,
-      error: refreshError,
-      data: refreshData,
-    },
-  ] = useRefreshMutation();
-
-  // useEffect(() => {
-  //   userLogIn({
-  //     email: 'artemRay@gmail.com',
-  //     password: '1234567',
-  //   });
-  // }, [userLogIn]);
+  const [userLogIn, { data: loginData, isSuccess: isLoginSuccess }] =
+    useLoginMutation();
+  const { data: currentUserData, isSuccess: isUserCurrentSuccess } =
+    useGetCurrentUserQuery();
 
   useEffect(() => {
-    userRefresh({
-      refreshToken:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTE0OWEwOWUyOTg2ZmE3YzQ1MDE5ZiIsImlhdCI6MTY4NDc0MzU0MiwiZXhwIjoxNjg0ODI5OTQyfQ.1mxjQClWu0fBAmrhnnN31jy522EiBHTehJstf-bVdhM',
+    userLogIn({
+      email: 'artemRay@gmail.com',
+      password: '1234567',
     });
-  }, [userRefresh]);
-
-  // console.log({ isLoading, isError, data });
-  console.log({ isRefreshLoading, isRefreshError, refreshData, refreshError });
+  }, [userLogIn]);
 
   return (
     <div className="app">
+      {isLoginSuccess && <p>Hello {loginData?.user.name}</p>}
+      {isUserCurrentSuccess && <p>Hello {currentUserData?.name}</p>}
       <GlobalStyle />
     </div>
   );

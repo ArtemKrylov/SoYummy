@@ -7,16 +7,14 @@ import {
 } from '@reduxjs/toolkit/query/react';
 import { logout, updateToken } from 'redux/auth/authSlice';
 import { RootState } from 'redux/store';
-import { ILogin, ILoginResponse } from 'shared/ts/models/login';
-import { IRefresh } from 'shared/ts/models/refresh';
-import { ISignUp } from 'shared/ts/models/signup';
-import { IUser } from 'shared/ts/models/user';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: 'https://so-yumi.p.goit.global/api/',
-  credentials: 'include',
+  // credentials: 'include',
+  // mode: 'no-cors',
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
+    console.log('token: ', token);
     //adding access token to Authorization header
     if (token) {
       headers.set('Authorization', `Bearer ${token}`);
@@ -52,43 +50,8 @@ const baseQueryWithReAuth: BaseQueryFn<
   return result;
 };
 
-export const SoYummy_API = createApi({
+export const SoYummyApiSlice = createApi({
   reducerPath: 'soYummy/api',
   baseQuery: baseQueryWithReAuth,
-  endpoints: builder => ({
-    signUp: builder.mutation<IUser, ISignUp>({
-      query: body => ({
-        url: 'users/signup',
-        method: 'POST',
-        body,
-      }),
-    }),
-    login: builder.mutation<ILoginResponse, ILogin>({
-      query: body => ({
-        url: 'users/login',
-        method: 'POST',
-        body,
-      }),
-    }),
-    refresh: builder.mutation<any, IRefresh>({
-      query: body => ({
-        url: 'users/refresh',
-        method: 'POST',
-        body,
-      }),
-    }),
-    logout: builder.mutation<any, any>({
-      query: () => ({
-        url: 'user/logout',
-        method: 'POST',
-      }),
-    }),
-  }),
+  endpoints: builder => ({}),
 });
-
-export const {
-  useSignUpMutation,
-  useLoginMutation,
-  useRefreshMutation,
-  useLogoutMutation,
-} = SoYummy_API;

@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { SoYummy_API } from 'API/SoYummy_API';
+import { SoYummyApiSlice } from 'redux/API/SoYummyApiSlice';
 import { authReducer } from './auth/authSlice';
 
 export const store = configureStore({
   reducer: {
-    [SoYummy_API.reducerPath]: SoYummy_API.reducer,
+    [SoYummyApiSlice.reducerPath]: SoYummyApiSlice.reducer,
     auth: authReducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(SoYummy_API.middleware),
+    getDefaultMiddleware().concat(SoYummyApiSlice.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
