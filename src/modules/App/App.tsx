@@ -3,11 +3,16 @@ import React, { FC, useEffect } from 'react';
 import { GlobalStyle } from 'shared/GlobalStyle';
 
 const App: FC = () => {
-  // const [userLogIn, { isLoading, isError, data }] = useLoginMutation();
+  // const [userLogIn, { isLoading: isLoginLoading, isLogin:isLoginError, data: loginData }] = useLoginMutation();
 
   const [
     userRefresh,
-    { isLoading: isLoadingRefr, isError: isErrorRefr, data: dataRefr },
+    {
+      isLoading: isRefreshLoading,
+      isError: isRefreshError,
+      error: refreshError,
+      data: refreshData,
+    },
   ] = useRefreshMutation();
 
   // useEffect(() => {
@@ -25,7 +30,7 @@ const App: FC = () => {
   }, [userRefresh]);
 
   // console.log({ isLoading, isError, data });
-  console.log({ isLoadingRefr, isErrorRefr, dataRefr });
+  console.log({ isRefreshLoading, isRefreshError, refreshData, refreshError });
 
   return (
     <div className="app">
