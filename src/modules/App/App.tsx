@@ -1,5 +1,5 @@
 import {} from 'redux/API/SoYummyApiSlice';
-import React, { FC, useEffect } from 'react';
+import React, { FC, lazy, useEffect } from 'react';
 import { GlobalStyle } from 'shared/GlobalStyle';
 import { useLoginMutation } from 'redux/auth/authApiSlice';
 import { setCredentials } from 'redux/auth/authSlice';
@@ -11,17 +11,27 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+
 import SharedLayout from 'shared/components/SharedLayout';
 import NoMatchPage from 'pages/NoMatchPage';
 import WelcomePage from 'pages/WelcomePage/WelcomePage';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import SignInPage from 'pages/SignInPage/SignInPage';
-import FavoritesPage from 'pages/FavoritesPage/FavoritesPage';
-import SearchPage from 'pages/SearchPage/SearchPage';
-import ShoppingListPage from 'pages/ShoppingListPage/ShoppingListPage';
-import MyRecipesPage from 'pages/MyRecipesPage/MyRecipesPage';
-import CategoriesPage from 'pages/CategoriesPage/CategoriesPage';
-import AddRecipesPage from 'pages/AddRecipesPage/AddRecipesPage';
+import PrivateRouteWithRedirect from 'shared/hoc/PrivateRouteWithRedirect/PrivateRouteWithRedirect';
+
+//pages with lazy loading and private routes
+const FavoritesPage = lazy(() => import('pages/FavoritesPage'));
+const FavoritesPageWithRedirect = PrivateRouteWithRedirect(FavoritesPage);
+const SearchPage = lazy(() => import('pages/SearchPage'));
+const SearchPageWithRedirect = PrivateRouteWithRedirect(SearchPage);
+const ShoppingListPage = lazy(() => import('pages/ShoppingListPage'));
+const ShoppingListPageWithRedirect = PrivateRouteWithRedirect(ShoppingListPage);
+const MyRecipesPage = lazy(() => import('pages/MyRecipesPage'));
+const MyRecipesPageWithRedirect = PrivateRouteWithRedirect(MyRecipesPage);
+const CategoriesPage = lazy(() => import('pages/CategoriesPage'));
+const CategoriesPageWithRedirect = PrivateRouteWithRedirect(CategoriesPage);
+const AddRecipesPage = lazy(() => import('pages/AddRecipesPage'));
+const AddRecipesPageWithRedirect = PrivateRouteWithRedirect(AddRecipesPage);
 
 const basename = '/SoYummy';
 
@@ -31,12 +41,12 @@ const router = createBrowserRouter(
       <Route index element={<WelcomePage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/signin" element={<SignInPage />} />
-      <Route path="/favourites" element={<FavoritesPage />} />
-      <Route path="/search" element={<SearchPage />} />
-      <Route path="/shopping_list" element={<ShoppingListPage />} />
-      <Route path="/my_recipes" element={<MyRecipesPage />} />
-      <Route path="/categories" element={<CategoriesPage />} />
-      <Route path="/add_recipes" element={<AddRecipesPage />} />
+      <Route path="/favourites" element={<FavoritesPageWithRedirect />} />
+      <Route path="/search" element={<SearchPageWithRedirect />} />
+      <Route path="/shopping_list" element={<ShoppingListPageWithRedirect />} />
+      <Route path="/my_recipes" element={<MyRecipesPageWithRedirect />} />
+      <Route path="/categories" element={<CategoriesPageWithRedirect />} />
+      <Route path="/add_recipes" element={<AddRecipesPageWithRedirect />} />
     </Route>
   ),
   {
