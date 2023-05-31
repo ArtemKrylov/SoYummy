@@ -25,9 +25,6 @@ export const GlobalStyle = createGlobalStyle`
 	.app {
 		width: 100vw;
 		min-height: 100vh;
-		background-color: #52ACFF;
-		background-image: linear-gradient(180deg, #52ACFF 25%, #FFE32C 100%);
-
 	}
 
 	code {
@@ -57,6 +54,7 @@ export const GlobalStyle = createGlobalStyle`
 
 	a {
 		text-decoration: none;
+		color: inherit;
 	}
 
 	button {
