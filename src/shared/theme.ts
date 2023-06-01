@@ -2,16 +2,51 @@ import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
   palette: {
-    // black: '#1E1F28',
-    // accent: '#8BAA36',
-    // success: { main: '#3CBC81' },
-    // error: { main: '#E74A3B' },
-    // warning: { main: '#F6C23E' },
-    // custom: {
-    //   mainWhite: '#FAFAFA',
-    //   additWhite: '#fff',
-    //   grey: '#2A2C36',
-    // },
+    common: {
+      white: '#FAFAFA',
+      black: '#1E1F28',
+    },
+    primary: {
+      main: '#8BAA36',
+      light: '#EBF3D4',
+      dark: '#22252A',
+    },
+    secondary: {
+      main: '#FAFAFA',
+      dark: '#2A2C36',
+    },
+    text: {
+      primary: '#23262A',
+      secondary: '#FAFAFA',
+    },
+    grey: {
+      100: '#FFFFFF',
+      200: '#ECECEC',
+      300: '#EFEFEF',
+      400: '#D9D9D9',
+      500: '#C4C4C4',
+      600: '#3E4462',
+      700: '#001833',
+      800: '#2A2C36',
+      900: '#000',
+    },
+    success: { main: '#3CBC81' },
+    error: { main: '#E74A3B' },
+    warning: { main: '#F6C23E' },
+  },
+  typography: {
+    fontFamily: '"Poppins", sans-serif',
+    fontSize: 14,
+    body1: {
+      fontFamily: '"Poppins", sans-serif',
+      fontWeight: 400,
+      fontSize: '14px',
+      lineHeight: '18px',
+      letterSpacing: '-0.02em',
+    },
+  },
+  breakpoints: {
+    values: { xs: 0, sm: 375, md: 768, lg: 1440, xl: 2560 },
   },
   // media: {
   //   tablet: `@media screen and (min-width: 768px)`,
