@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/SoYummy/static/js/main.d2a53fb3.js",
+    "main.js": "/SoYummy/static/js/main.869989fe.js",
     "static/js/524.78bb46e4.chunk.js": "/SoYummy/static/js/524.78bb46e4.chunk.js",
     "static/js/460.4120535f.chunk.js": "/SoYummy/static/js/460.4120535f.chunk.js",
     "static/js/478.c2a84b63.chunk.js": "/SoYummy/static/js/478.c2a84b63.chunk.js",
@@ -8,10 +8,15 @@
     "static/js/392.c0fcb99e.chunk.js": "/SoYummy/static/js/392.c0fcb99e.chunk.js",
     "static/js/210.95462ec0.chunk.js": "/SoYummy/static/js/210.95462ec0.chunk.js",
     "static/js/787.a93bd551.chunk.js": "/SoYummy/static/js/787.a93bd551.chunk.js",
+    "static/media/welcomeBgDesktop@2x.jpg": "/SoYummy/static/media/welcomeBgDesktop@2x.6be55f54fe245663c474.jpg",
+    "static/media/welcomeBgTablet@2x.jpg": "/SoYummy/static/media/welcomeBgTablet@2x.f20af348d37290a3cce4.jpg",
+    "static/media/welcomeBgMobile@2x.jpg": "/SoYummy/static/media/welcomeBgMobile@2x.6628da6ec5be6fa08c71.jpg",
+    "static/media/welcomeBgDesktop@1x.jpg": "/SoYummy/static/media/welcomeBgDesktop@1x.b860b136beb6294b7ff3.jpg",
+    "static/media/welcomeBgTablet@1x.jpg": "/SoYummy/static/media/welcomeBgTablet@1x.074337a39a180f0c14a6.jpg",
     "static/media/welcomeBgMobile@1x.jpg": "/SoYummy/static/media/welcomeBgMobile@1x.547d5b94f4b0bc038da1.jpg",
     "index.html": "/SoYummy/index.html",
     "static/media/logo.svg": "/SoYummy/static/media/logo.fcaa8cce9fd333e972a24b0966b79d30.svg",
-    "main.d2a53fb3.js.map": "/SoYummy/static/js/main.d2a53fb3.js.map",
+    "main.869989fe.js.map": "/SoYummy/static/js/main.869989fe.js.map",
     "524.78bb46e4.chunk.js.map": "/SoYummy/static/js/524.78bb46e4.chunk.js.map",
     "460.4120535f.chunk.js.map": "/SoYummy/static/js/460.4120535f.chunk.js.map",
     "478.c2a84b63.chunk.js.map": "/SoYummy/static/js/478.c2a84b63.chunk.js.map",
@@ -21,6 +26,6 @@
     "787.a93bd551.chunk.js.map": "/SoYummy/static/js/787.a93bd551.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.d2a53fb3.js"
+    "static/js/main.869989fe.js"
   ]
 }
