@@ -1,16 +1,15 @@
 import React from 'react';
 import { Container, Typography, Box } from '@mui/material';
 
-import bgImg from '../../shared/data/img/welcomeBgMobile@1x.jpg';
 import OvalButton from 'modules/Button/OvalButton/OvalButton';
 import { theme } from 'shared/theme';
 import Logo from 'shared/components/Logo/Logo';
+import { WelcomePageStyled } from './WelcomePage.styled';
 
 const WelcomePage: React.FC = () => {
   return (
-    <Box
+    <WelcomePageStyled
       sx={{
-        backgroundImage: `url(${bgImg})`,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         height: '100dvh',
@@ -39,7 +38,7 @@ const WelcomePage: React.FC = () => {
           <OvalButton>Sign in</OvalButton>
         </Box>
       </Container>
-    </Box>
+    </WelcomePageStyled>
   );
 };
 
