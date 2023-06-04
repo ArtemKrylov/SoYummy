@@ -14,7 +14,6 @@ const Logo: React.FC<LogoProps> = ({ padding = '12px' }) => {
       color="secondary"
       viewBox="0 0 44 44"
       sx={{
-        mb: '24px',
         p: padding,
         borderRadius: '12px',
         backgroundColor: theme.palette.primary.main,

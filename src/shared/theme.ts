@@ -1,6 +1,12 @@
 import { createTheme } from '@mui/material/styles';
 
-export const theme = createTheme({
+let theme = createTheme({
+  breakpoints: {
+    values: { xs: 0, sm: 375, md: 768, lg: 1440, xl: 2560 },
+  },
+});
+
+theme = createTheme(theme, {
   palette: {
     common: {
       white: '#FAFAFA',
@@ -41,13 +47,36 @@ export const theme = createTheme({
       fontFamily: '"Poppins", sans-serif',
       fontWeight: 400,
       fontSize: '14px',
+      lineHeight: 1.29,
+      letterSpacing: '-0.02em',
+      [theme.breakpoints.up('lg')]: {
+        fontSize: '18px',
+        lineHeight: 1.33,
+      },
+    },
+    body2: {
+      fontFamily: '"Poppins", sans-serif',
+      fontWeight: 400,
+      fontSize: '14px',
       lineHeight: '18px',
       letterSpacing: '-0.02em',
+      [theme.breakpoints.up('lg')]: {
+        fontSize: '18px',
+        lineHeight: '24px',
+      },
+    },
+    subtitle1: {
+      fontWeight: 600,
+      fontSize: '24px',
+      lineHeight: '24px',
+      letterSpacing: '-0.02em',
+      [theme.breakpoints.up('md')]: {
+        fontSize: '28px',
+        lineHeight: '28px',
+      },
     },
   },
-  breakpoints: {
-    values: { xs: 0, sm: 375, md: 768, lg: 1440, xl: 2560 },
-  },
+
   // media: {
   //   tablet: `@media screen and (min-width: 768px)`,
   //   desktop: `@media screen and (min-width: 1440px)`,
@@ -79,3 +108,5 @@ export const theme = createTheme({
   // line-height: calc(${lh}px / ${fs}px);
   // letter-spacing: ${ls}px;`,
 });
+
+export { theme };
