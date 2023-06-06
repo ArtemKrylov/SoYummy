@@ -1,7 +1,8 @@
+import AuthComponent from 'modules/Auth/AuthComponent/AuthComponent';
 import React from 'react';
 
 const SignInPage: React.FC = () => {
-  return <div>SignInPage</div>;
+  return <AuthComponent />;
 };
 
 export default SignInPage;
