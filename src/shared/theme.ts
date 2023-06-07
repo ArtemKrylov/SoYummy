@@ -75,6 +75,16 @@ theme = createTheme(theme, {
         lineHeight: '28px',
       },
     },
+    subtitle2: {
+      fontWeight: 600,
+      fontSize: '24px',
+      lineHeight: '28px',
+      letterSpacing: '-0.02em',
+      [theme.breakpoints.up('md')]: {
+        fontSize: '28px',
+        lineHeight: '30px',
+      },
+    },
   },
 
   // media: {
