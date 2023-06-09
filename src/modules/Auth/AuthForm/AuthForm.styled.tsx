@@ -1,6 +1,8 @@
 import { theme } from 'shared/theme';
 import styled from 'styled-components';
-import Sprite from '../../../shared/data/sprite.svg';
+import UserIcon from '../../../shared/data/svg/user.svg';
+import EmailIcon from '../../../shared/data/svg/email.svg';
+import LockIcon from '../../../shared/data/svg/lock.svg';
 
 export const AuthInputStyled = styled.li`
   position: relative;
@@ -15,30 +17,32 @@ export const AuthInputStyled = styled.li`
     position: absolute;
     top: 50%;
     left: 15px;
-    width: 20px;
-    height: 20px;
     transform: translateY(-50%);
+    opacity: 0.8;
   }
   &.authForm__name::before {
-    background: url('${Sprite}#icon-user') center center contain no-repeat;
-    /* fill: white;
-    stroke: white; */
+    height: 14px;
+    width: 12px;
+    background: url('${UserIcon}') no-repeat center/cover;
   }
   &.authForm__email::before {
-    background-image: url('../../../shared/data/sprite.svg#icon-email');
+    height: 12px;
+    width: 15px;
+    background: url('${EmailIcon}') no-repeat center/cover;
   }
   &.authForm__password::before {
-    background-image: url('../../../shared/data/sprite.svg#icon-lock');
+    height: 14px;
+    width: 14px;
+    background: url('${LockIcon}') no-repeat center/cover;
   }
 
   & .authForm__input {
-    padding: 12px 14px;
+    width: 100%;
+    padding: 12px 14px 12px 40px;
     border: none;
-
+    color: ${theme.palette.common.white};
     background-color: transparent;
     &::placeholder {
-      padding-left: 40px;
-
       color: ${theme.palette.common.white};
       opacity: 0.8;
       font-size: 14px;
@@ -49,14 +53,26 @@ export const AuthInputStyled = styled.li`
 
   @media (min-width: ${theme.breakpoints.values.md}px) {
     & .authForm__input {
-      padding: 16px 18px;
+      padding: 16px 18px 16px 50px;
 
       &::placeholder {
-        padding-left: 50px;
-
         font-size: 18px;
         line-height: 27px;
       }
     }
+  }
+
+  &.authForm__name::before {
+    width: 16px;
+    height: 18px;
+  }
+
+  &.authForm__email::before {
+    height: 16px;
+    width: 20px;
+  }
+  &.authForm__password::before {
+    height: 18px;
+    width: 18px;
   }
 `;

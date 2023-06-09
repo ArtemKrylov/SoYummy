@@ -1,8 +1,11 @@
 import { Button, FormControl, Stack, Typography } from '@mui/material';
 import { Field, Form, Formik } from 'formik';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { object, string } from 'yup';
 import { AuthInputStyled } from './AuthForm.styled';
+import { useLoginMutation, useSignUpMutation } from 'redux/auth/authApiSlice';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 const registerSchema = object({
   name: string().required(),
@@ -11,7 +14,6 @@ const registerSchema = object({
 });
 
 const signInSchema = object({
-  name: string().required(),
   email: string().email().required(),
   password: string().min(8).max(12).required(),
 });
@@ -21,8 +23,56 @@ interface AuthFormProps {
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
+  const navigate = useNavigate();
+  const [
+    userSignUp,
+    { data: signUpData, isSuccess: isSignUpSuccess, error: signUpError },
+  ] = useSignUpMutation();
+  const [
+    userLogIn,
+    { data: loginData, isSuccess: isLoginSuccess, error: loginError },
+  ] = useLoginMutation();
+
   const isRegisterType = type === 'register';
-  function onAuthFormSubmit() {}
+
+  useEffect(() => {
+    if (isSignUpSuccess || isLoginSuccess) {
+      toast.success('Success!');
+      console.log(signUpData, loginData);
+      navigate('/categories');
+    }
+    if (signUpError || loginError) {
+      toast.success('Error!');
+    }
+  }, [
+    isLoginSuccess,
+    isSignUpSuccess,
+    loginData,
+    loginError,
+    navigate,
+    signUpData,
+    signUpError,
+  ]);
+
+  function onAuthFormSubmit(
+    {
+      name,
+      email,
+      password,
+    }: {
+      name: string;
+      email: string;
+      password: string;
+    },
+    { resetForm }: any
+  ) {
+    console.log('click');
+    isRegisterType
+      ? userSignUp({ name, email, password })
+      : userLogIn({ email, password });
+
+    resetForm();
+  }
   return (
     <Formik
       initialValues={{ name: '', email: '', password: '' }}
@@ -33,7 +83,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
         <Form className="authForm">
           <FormControl
             sx={{
-              p: { xs: '32px 28px 40px', md: '44px 50px' },
+              p: { xs: '32px 28px', md: '44px 50px' },
               backgroundColor: 'grey.800',
               borderRadius: '30px',
               display: 'flex',

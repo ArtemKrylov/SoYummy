@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { AuthContainerStyled } from './AuthComponent.styled';
-import { Container } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { useNavigate } from 'react-router-dom';
@@ -24,14 +24,27 @@ const AuthComponent: React.FC<AuthComponentProps> = ({ type }) => {
       <Container
         className="authComponent__container"
         sx={{
-          pt: { xs: '37vh', md: '43.4vh' },
+          height: '100vh',
+          pt: { xs: '37vh', md: '42.7vh', lg: '21vh' },
+          pr: { lg: '12.5vw' },
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
+          alignItems: { xs: 'center', lg: 'flex-end' },
+          justifyContent: 'start',
         }}
       >
         <AuthForm type={type} />
+        <Typography
+          sx={{
+            mt: '18px',
+            textDecoration: 'underline',
+            color: 'common.white',
+            fontSize: { xs: '14px', md: '16px' },
+            lineHeight: { xs: '21px', md: '24px' },
+          }}
+        >
+          {type === 'register' ? 'Registration' : 'Sign in'}
+        </Typography>
       </Container>
     </AuthContainerStyled>
   );
