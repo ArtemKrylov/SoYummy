@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { AuthContainerStyled } from './AuthComponent.styled';
-import { Container, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { useNavigate } from 'react-router-dom';
@@ -27,24 +27,31 @@ const AuthComponent: React.FC<AuthComponentProps> = ({ type }) => {
           height: '100vh',
           pt: { xs: '37vh', md: '42.7vh', lg: '21vh' },
           pr: { lg: '12.5vw' },
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: { xs: 'center', lg: 'flex-end' },
-          justifyContent: 'start',
         }}
       >
-        <AuthForm type={type} />
-        <Typography
+        <Box
           sx={{
-            mt: '18px',
-            textDecoration: 'underline',
-            color: 'common.white',
-            fontSize: { xs: '14px', md: '16px' },
-            lineHeight: { xs: '21px', md: '24px' },
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: { xs: 'center', lg: 'flex-end' },
+            justifyContent: 'start',
           }}
         >
-          {type === 'register' ? 'Registration' : 'Sign in'}
-        </Typography>
+          <AuthForm type={type} />
+          <Typography
+            sx={{
+              width: { xs: '100%', md: '500px' },
+              mt: '18px',
+              textDecoration: 'underline',
+              color: 'common.white',
+              fontSize: { xs: '14px', md: '16px' },
+              lineHeight: { xs: '21px', md: '24px' },
+              textAlign: 'center',
+            }}
+          >
+            {type === 'register' ? 'Registration' : 'Sign in'}
+          </Typography>
+        </Box>
       </Container>
     </AuthContainerStyled>
   );

@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { setCredentials } from 'redux/auth/authSlice';
+import FormErrorMessage from 'shared/components/FormErrorMessage/FormErrorMessage';
 
 const registerSchema = object({
   name: string().max(16).required(),
@@ -111,11 +112,11 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
         <Form className="authForm">
           <FormControl
             sx={{
+              display: 'flex',
+              width: { xs: '100%', md: '500px' },
               p: { xs: '32px 28px', md: '44px 50px' },
               backgroundColor: 'grey.800',
               borderRadius: '30px',
-              display: 'flex',
-              width: { xs: '100%', md: '500px' },
             }}
           >
             <Typography
@@ -139,32 +140,41 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
             >
               {isRegisterType && (
                 <AuthInputStyled className="authForm__name">
-                  <Field
-                    className="authForm__input authForm__nameInput"
-                    name="name"
-                    type="text"
-                    required
-                    placeholder="Name"
-                  />
+                  <FormErrorMessage name="name" />
+                  <div className="authForm__fieldWrapper authForm__fieldWrapper--name">
+                    <Field
+                      className="authForm__input authForm__nameInput"
+                      name="name"
+                      type="text"
+                      required
+                      placeholder="Name"
+                    />
+                  </div>
                 </AuthInputStyled>
               )}
               <AuthInputStyled className="authForm__email">
-                <Field
-                  className="authForm__input  authForm__emailInput"
-                  name="email"
-                  type="text"
-                  required
-                  placeholder="Email"
-                />
+                <FormErrorMessage name="email" />
+                <div className="authForm__fieldWrapper authForm__fieldWrapper--email">
+                  <Field
+                    className="authForm__input  authForm__emailInput"
+                    name="email"
+                    type="text"
+                    required
+                    placeholder="Email"
+                  />
+                </div>
               </AuthInputStyled>
               <AuthInputStyled className="authForm__password">
-                <Field
-                  className="authForm__input  authForm__passwordInput"
-                  name="password"
-                  type="password"
-                  required
-                  placeholder="Password"
-                />
+                <FormErrorMessage name="password" />
+                <div className="authForm__fieldWrapper authForm__fieldWrapper--password">
+                  <Field
+                    className="authForm__input  authForm__passwordInput"
+                    name="password"
+                    type="password"
+                    required
+                    placeholder="Password"
+                  />
+                </div>
               </AuthInputStyled>
             </Stack>
             <Button

@@ -5,41 +5,41 @@ import EmailIcon from '../../../shared/data/svg/email.svg';
 import LockIcon from '../../../shared/data/svg/lock.svg';
 
 export const AuthInputStyled = styled.li`
-  position: relative;
-  border: 1px solid ${theme.palette.common.white};
-  border-radius: 6px;
-
   color: ${theme.palette.common.white};
 
-  &::before {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    left: 15px;
-    transform: translateY(-50%);
-    opacity: 0.8;
-  }
-  &.authForm__name::before {
-    height: 14px;
-    width: 12px;
-    background: url('${UserIcon}') no-repeat center/cover;
-  }
-  &.authForm__email::before {
-    height: 12px;
-    width: 15px;
-    background: url('${EmailIcon}') no-repeat center/cover;
-  }
-  &.authForm__password::before {
-    height: 14px;
-    width: 14px;
-    background: url('${LockIcon}') no-repeat center/cover;
+  & .authForm__fieldWrapper {
+    position: relative;
+    &::before {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      opacity: 0.8;
+    }
+    &.authForm__fieldWrapper--name::before {
+      height: 14px;
+      width: 12px;
+      background: url('${UserIcon}') no-repeat center/cover;
+    }
+    &.authForm__fieldWrapper--email::before {
+      height: 12px;
+      width: 15px;
+      background: url('${EmailIcon}') no-repeat center/cover;
+    }
+    &.authForm__fieldWrapper--password::before {
+      height: 14px;
+      width: 14px;
+      background: url('${LockIcon}') no-repeat center/cover;
+    }
   }
 
   & .authForm__input {
     width: 100%;
     padding: 12px 14px 12px 40px;
-    border: none;
+    border: 1px solid ${theme.palette.common.white};
+    border-radius: 6px;
     color: ${theme.palette.common.white};
     background-color: transparent;
     &::placeholder {
