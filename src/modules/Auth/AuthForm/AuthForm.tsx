@@ -1,14 +1,16 @@
 import { Button, FormControl, Stack, Typography } from '@mui/material';
 import { Field, Form, Formik } from 'formik';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { object, string } from 'yup';
 import { AuthInputStyled } from './AuthForm.styled';
 import { useLoginMutation, useSignUpMutation } from 'redux/auth/authApiSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
+import { setCredentials } from 'redux/auth/authSlice';
 
 const registerSchema = object({
-  name: string().required(),
+  name: string().max(16).required(),
   email: string().email().required(),
   password: string().min(8).max(12).required(),
 });
@@ -23,11 +25,14 @@ interface AuthFormProps {
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
+  const [loginCredentials, setLoginCredentials] = useState({
+    email: '',
+    password: '',
+  });
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [
-    userSignUp,
-    { data: signUpData, isSuccess: isSignUpSuccess, error: signUpError },
-  ] = useSignUpMutation();
+  const [userSignUp, { isSuccess: isSignUpSuccess, error: signUpError }] =
+    useSignUpMutation();
   const [
     userLogIn,
     { data: loginData, isSuccess: isLoginSuccess, error: loginError },
@@ -35,23 +40,46 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 
   const isRegisterType = type === 'register';
 
+  //for signUp
   useEffect(() => {
-    if (isSignUpSuccess || isLoginSuccess) {
-      toast.success('Success!');
-      console.log(signUpData, loginData);
-      navigate('/categories');
+    if (!loginCredentials.email) return;
+    if (signUpError) {
+      toast.error('Error!');
+      return;
     }
-    if (signUpError || loginError) {
-      toast.success('Error!');
+    if (!isSignUpSuccess) return;
+
+    if (
+      isSignUpSuccess &&
+      loginCredentials.email &&
+      loginCredentials.password
+    ) {
+      //the backend doesn`t provide tokens on signup => the need to login afterwards
+      userLogIn(loginCredentials);
+      //next steps - in login useEffect
     }
+  }, [isSignUpSuccess, loginCredentials, signUpError, userLogIn]);
+
+  //for login
+  useEffect(() => {
+    if (!loginCredentials.email) return;
+    if (loginError) {
+      toast.error('Error!');
+      return;
+    }
+    if (!isLoginSuccess) return;
+
+    toast.success(`Success! Welcome, ${loginData?.user?.name ?? 'user'}`);
+    //setting auth (user, token) to state
+    isLoginSuccess && loginData && dispatch(setCredentials(loginData));
+    navigate('/categories');
   }, [
+    dispatch,
     isLoginSuccess,
-    isSignUpSuccess,
+    loginCredentials.email,
     loginData,
     loginError,
     navigate,
-    signUpData,
-    signUpError,
   ]);
 
   function onAuthFormSubmit(
@@ -66,7 +94,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
     },
     { resetForm }: any
   ) {
-    console.log('click');
+    setLoginCredentials({ email, password });
     isRegisterType
       ? userSignUp({ name, email, password })
       : userLogIn({ email, password });
