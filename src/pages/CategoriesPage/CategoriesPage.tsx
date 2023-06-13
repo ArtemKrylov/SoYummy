@@ -1,7 +1,13 @@
+import Header from 'modules/Header/Header';
 import React from 'react';
 
 const CategoriesPage: React.FC = () => {
-  return <div>CategoriesPage</div>;
+  return (
+    <>
+      <Header />
+      CategoriesPage
+    </>
+  );
 };
 
 export default CategoriesPage;
